@@ -1,5 +1,30 @@
 (function () {
 
+    var Obj = [];
+
+    var Update =  function () {
+       for (var i = 0; i < Obj.length; i++)
+           {
+               Obj[i].Update();
+           }
+    };
+    
+    var Display = function()
+    {
+       for (var i = 0; i < Obj.length; i++)
+           {
+               Obj[i].Update();
+           }
+    };
+
+    var Main = function() {
+        tsc.values.time.Update();
+        Display();
+        Update();
+      //ship.move(timeFrameSec);
+      //drawer.drawShip();
+    };
+    
   var DrawerCanvas = tsc.drawer.DrawerCanvas;
   var Ship = tsc.Ship;
   var ShipDelegate = tsc.ShipDelegate;
@@ -21,16 +46,20 @@
       shipDelegate.setKey(key);
     });
 
+
+    input.registerEventHandler(function (key) {
+      shipDelegate.setKey(key);
+    });
+
+
+// Creat a Ship 
+// DEBUG
     drawer.addShip(ship);
-    drawer.drawShip();
 
     var timeFrameMiliSec = 1000 / display.FRAME_RATE;
-    var timeFrameSec = 1 / display.FRAME_RATE;
-    setInterval(function () {
-      shipDelegate.action();
-      ship.move(timeFrameSec);
-      drawer.drawShip();
-    }, timeFrameMiliSec);
+
+    setInterval(Main, timeFrameMiliSec);
+
   };
 
 }).call(this);
