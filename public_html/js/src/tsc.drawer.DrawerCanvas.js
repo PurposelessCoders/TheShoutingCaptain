@@ -19,6 +19,7 @@
   };
 
   _drawer.drawShip = function () {
+    this.computeShipModuloPosition();
     var shipX = this.ship.posX;
     var shipY = this.ship.posY;
     var shipAngle = this.ship.angle;
@@ -38,6 +39,24 @@
     this.ctx.fill();
 
     this.ctx.restore();
+  };
+  
+  _drawer.computeShipModuloPosition = function () {
+    var shipX = this.ship.posX;
+    var width = this.ctx.canvas.width;
+    this.ship.posX = positiveModulo(shipX, width);
+
+    var shipY = this.ship.posY;
+    var height = this.ctx.canvas.height;
+    this.ship.posY = positiveModulo(shipY, height);
+  };
+
+  var positiveModulo = function (num, mod) {
+    num %= mod;
+    if (num < 0) {
+      num += mod;
+    }
+    return num;
   };
 
   _drawer.clear = function () {
