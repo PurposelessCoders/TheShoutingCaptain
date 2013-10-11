@@ -27,15 +27,15 @@
     this.ctx.translate(shipX, shipY);
     this.ctx.rotate(shipAngle);
 
-    ctx.beginPath();
-    ctx.moveTo(-4, 8);
-    ctx.lineTo(-4, -4);
-    ctx.lineTo(0, -8);
-    ctx.lineTo(4, -4);
-    ctx.lineTo(4, 8);
-    ctx.lineTo(-4, 8);
-    ctx.closePath();
-    ctx.fill();
+    this.ctx.beginPath();
+    this.ctx.moveTo(-4, 8);
+    this.ctx.lineTo(-4, -4);
+    this.ctx.lineTo(0, -8);
+    this.ctx.lineTo(4, -4);
+    this.ctx.lineTo(4, 8);
+    this.ctx.lineTo(-4, 8);
+    this.ctx.closePath();
+    this.ctx.fill();
 
     this.ctx.restore();
   };
