@@ -2,6 +2,7 @@
 
   var DrawerCanvas = tsc.drawer.DrawerCanvas;
   var Ship = tsc.Ship;
+  var display = tsc.values.display;
 
   window.onload = function () {
     var canvas = document.getElementById("gameCanvas");
@@ -14,6 +15,13 @@
 
     drawer.addShip(ship);
     drawer.drawShip();
+
+    var timeFrameMiliSec = 1000 / display.FRAME_RATE;
+    var timeFrameSec = 1 / display.FRAME_RATE;
+    setInterval(function () {
+      ship.move(timeFrameSec);
+      drawer.drawShip();
+    }, timeFrameMiliSec);
   };
 
 }).call(this);
