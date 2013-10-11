@@ -1,30 +1,36 @@
 (function () {
 
-    var Obj = [];
+  var Obj = [];
+  var ship;
+  var shipDelegate;
+  var drawer;
 
-    var Update =  function () {
-       for (var i = 0; i < Obj.length; i++)
-           {
-               Obj[i].Update();
-           }
-    };
-    
-    var Display = function()
+  var Update = function () {
+    for (var i = 0; i < Obj.length; i++)
     {
-       for (var i = 0; i < Obj.length; i++)
-           {
-               Obj[i].Update();
-           }
-    };
+      Obj[i].Update();
+    }
+  };
 
-    var Main = function() {
-        tsc.values.time.Update();
-        Display();
-        Update();
-      //ship.move(timeFrameSec);
-      //drawer.drawShip();
-    };
-    
+  var Display = function ()
+  {
+    for (var i = 0; i < Obj.length; i++)
+    {
+      Obj[i].Update();
+    }
+  };
+
+  var Main = function () {
+    tsc.values.time.Update();
+    Display();
+    Update();
+
+    shipDelegate.action();
+    ship.move(tsc.values.time.DeltaTime());
+    drawer.clear();
+    drawer.drawShip();
+  };
+
   var DrawerCanvas = tsc.drawer.DrawerCanvas;
   var Ship = tsc.Ship;
   var ShipDelegate = tsc.ShipDelegate;
@@ -34,12 +40,12 @@
   window.onload = function () {
     var canvas = document.getElementById("gameCanvas");
     var ctx = canvas.getContext("2d");
-    var drawer = new DrawerCanvas(ctx);
+    drawer = new DrawerCanvas(ctx);
 
     var midX = canvas.width / 2;
     var midY = canvas.height / 2;
-    var ship = new Ship(midX, midY, 0);
-    var shipDelegate = new ShipDelegate(ship);
+    ship = new Ship(midX, midY, 0);
+    shipDelegate = new ShipDelegate(ship);
     var input = new Keyboard(document);
 
     input.registerEventHandler(function (key) {
@@ -48,7 +54,7 @@
 
 
     input.registerEventHandler(function (key) {
-      shipDelegate.setKey(key);
+      shipDelegate.setInput(key);
     });
 
 
@@ -57,9 +63,7 @@
     drawer.addShip(ship);
 
     var timeFrameMiliSec = 1000 / display.FRAME_RATE;
-
     setInterval(Main, timeFrameMiliSec);
-
   };
 
 }).call(this);

@@ -40,4 +40,10 @@
     this.ctx.restore();
   };
 
+  _drawer.clear = function () {
+    var width = this.ctx.canvas.width;
+    var height = this.ctx.canvas.height;
+    this.ctx.clearRect(0, 0, width, height);
+  };
+
 }).call(this);
