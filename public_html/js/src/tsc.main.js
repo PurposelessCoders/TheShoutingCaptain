@@ -43,7 +43,7 @@
     var input = new Keyboard(document);
 
     input.registerEventHandler(function (key) {
-      shipDelegate.setKey(key);
+      shipDelegate.setInput(key);
     });
 
 
