@@ -65,9 +65,11 @@
     } else if (keyCode === CODE_RIGHT) {
       this.key.right = true;
     }
+
+    this.callHandler();
   };
 
-_keyboard.handleKeyUp = function (keyCode) {
+  _keyboard.handleKeyUp = function (keyCode) {
     if (keyCode === CODE_DOWN) {
       this.key.down = false;
     } else if (keyCode === CODE_UP) {
@@ -77,8 +79,10 @@ _keyboard.handleKeyUp = function (keyCode) {
     } else if (keyCode === CODE_RIGHT) {
       this.key.right = false;
     }
+
+    this.callHandler();
   };
-  
+
   _keyboard.callHandler = function () {
     if (this.eventHandler !== null) {
       this.eventHandler(this.key);
