@@ -27,19 +27,19 @@
   _ship.turnLeft = function () {
     this.angularSpeed = -Math.PI / 4;
   };
-  
+
   _ship.stopTurning = function () {
     this.angularSpeed = 0;
   };
-  
+
   _ship.accelerate = function () {
     this.linearSpeed = 4;
   };
-  
+
   _ship.decelerate = function () {
     this.linearSpeed = 0;
   };
-  
+
   _ship.stopAccelerate = function () {
     if (this.linearSpeed > physic.WATER_FRICTION) {
       this.linearSpeed -= physic.WATER_FRICTION;
@@ -52,11 +52,11 @@
     this.moveAngular(time);
     this.moveLinear(time);
   };
-  
+
   _ship.moveAngular = function (time) {
     this.angle += this.angularSpeed;
   };
-  
+
   _ship.moveLinear = function () {
     this.posY += Math.sin(this.angle) * this.linearSpeed;
     this.posX += Math.cos(this.angle) * this.linearSpeed;
