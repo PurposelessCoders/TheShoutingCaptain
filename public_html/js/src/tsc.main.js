@@ -40,7 +40,7 @@
     var midY = canvas.height / 2;
     var ship = new Ship(midX, midY, 0);
     var shipDelegate = new ShipDelegate(ship);
-    var input = new Keyboard(canvas);
+    var input = new Keyboard(document);
 
     input.registerEventHandler(function (key) {
       shipDelegate.setKey(key);
