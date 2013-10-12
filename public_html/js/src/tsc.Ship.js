@@ -33,11 +33,19 @@
   };
 
   _ship.accelerate = function () {
-    this.linearSpeed = 4;
+    if (this.linearSpeed < physic.MAX_SPEED - physic.ACCELERATION) {
+      this.linearSpeed += physic.ACCELERATION;
+    } else {
+      this.linearSpeed = physic.MAX_SPEED;
+    }
   };
 
   _ship.decelerate = function () {
-    this.linearSpeed = 0;
+    if (this.linearSpeed > physic.DECELERATION) {
+      this.linearSpeed -= physic.DECELERATION;
+    } else {
+      this.linearSpeed = 0;
+    }
   };
 
   _ship.stopAccelerate = function () {
