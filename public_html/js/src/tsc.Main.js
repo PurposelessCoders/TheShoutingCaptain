@@ -6,58 +6,78 @@
   var display = tsc.values.display;
   var Keyboard = tsc.input.Keyboard;
 
-  var Obj = [];
-  var ship;
-  var shipDelegate;
-  var drawer;
-
-  var Update = function () {
-    for (var i = 0; i < Obj.length; i++)
-    {
-      Obj[i].Update();
-    }
-  };
-
-  var Display = function ()
-  {
-    for (var i = 0; i < Obj.length; i++)
-    {
-      Obj[i].Update();
-    }
-  };
-
   var Main = function () {
-    tsc.values.time.Update();
-    Display();
-    Update();
-
-    shipDelegate.action();
-    ship.move(tsc.values.time.DeltaTime());
-    drawer.clear();
-    drawer.drawShip();
+    this.ship = null;
+    this.shipDelegate = null;
+    this.drawer = null;
+    this.objs = [];
   };
 
-  window.onload = function () {
+  var _main = Main.prototype;
+
+  _main.init = function () {
+    var that = this;
     var canvas = document.getElementById("gameCanvas");
     var ctx = canvas.getContext("2d");
-    drawer = new DrawerCanvas(ctx);
+    this.drawer = new DrawerCanvas(ctx);
 
     var midX = canvas.width / 2;
     var midY = canvas.height / 2;
-    ship = new Ship(midX, midY, 0);
-    shipDelegate = new ShipDelegate(ship);
+    this.ship = new Ship(midX, midY, 0);
+    drawer.addShip(this.ship);
+
+    this.shipDelegate = new ShipDelegate(this.ship);
     var input = new Keyboard(document);
 
     input.registerEventHandler(function (key) {
-      shipDelegate.setInput(key);
+      that.shipDelegate.setInput(key);
     });
+  };
+  
+  _main.run = function () {
+    this.startLoop();
+  };
 
-// Creat a Ship 
-// DEBUG
-    drawer.addShip(ship);
-
+  _main.startLoop = function () {
+    var that = this;
     var timeFrameMiliSec = 1000 / display.FRAME_RATE;
-    setInterval(Main, timeFrameMiliSec);
+
+    setInterval(function () {
+      that.loopAction();
+    }, timeFrameMiliSec);
+  };
+
+  _main.loopAction = function () {
+    tsc.values.time.Update();
+
+    this.display();
+    this.update();
+  };
+
+  _main.update = function () {
+    this.shipDelegate.action();
+    this.ship.move(tsc.values.time.DeltaTime());
+
+    for (var i = 0; i < this.objs; i++) {
+      var obj = this.objs[i];
+
+      obj.update();
+    }
+  };
+
+  _main.display = function () {
+    this.drawer.clear();
+    this.drawer.drawShip();
+
+    for (var i = 0; i < this.objs.length; i++) {
+      var obj = this.objs[i];
+
+      obj.display();
+    }
+  };
+
+  window.onload = function () {
+    new Main().run();
   };
 
 }).call(this);
