@@ -21,11 +21,11 @@
   var _ship = Ship.prototype;
 
   _ship.turnRight = function () {
-    this.angularSpeed = Math.PI / 4;
+    this.angularSpeed = Math.PI / 16;
   };
 
   _ship.turnLeft = function () {
-    this.angularSpeed = -Math.PI / 4;
+    this.angularSpeed = -Math.PI / 16;
   };
 
   _ship.stopTurning = function () {
