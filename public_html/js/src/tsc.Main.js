@@ -5,6 +5,7 @@
   var ShipDelegate = tsc.ShipDelegate;
   var display = tsc.values.display;
   var Keyboard = tsc.input.Keyboard;
+  var time = tsc.values.time;
 
   var Main = function () {
     this.ship = null;
@@ -49,7 +50,7 @@
   };
 
   _main.loopAction = function () {
-    tsc.values.time.Update();
+    time.Update();
 
     this.display();
     this.update();
@@ -57,7 +58,7 @@
 
   _main.update = function () {
     this.shipDelegate.action();
-    this.ship.move(tsc.values.time.DeltaTime());
+    this.ship.move(time.DeltaTime());
 
     for (var i = 0; i < this.objs; i++) {
       var obj = this.objs[i];
