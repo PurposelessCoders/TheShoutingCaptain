@@ -26,6 +26,9 @@
     var midX = canvas.width / 2;
     var midY = canvas.height / 2;
     this.ship = new Ship(midX, midY, 0);
+    this.wind = new tsc.Wind();
+    this.wind.defineNextChagement();
+    
     this.drawer.addShip(this.ship);
 
     this.shipDelegate = new ShipDelegate(this.ship);
