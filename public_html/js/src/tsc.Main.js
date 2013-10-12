@@ -1,5 +1,11 @@
 (function () {
 
+  var DrawerCanvas = tsc.drawer.DrawerCanvas;
+  var Ship = tsc.Ship;
+  var ShipDelegate = tsc.ShipDelegate;
+  var display = tsc.values.display;
+  var Keyboard = tsc.input.Keyboard;
+
   var Obj = [];
   var ship;
   var shipDelegate;
@@ -30,12 +36,6 @@
     drawer.clear();
     drawer.drawShip();
   };
-
-  var DrawerCanvas = tsc.drawer.DrawerCanvas;
-  var Ship = tsc.Ship;
-  var ShipDelegate = tsc.ShipDelegate;
-  var display = tsc.values.display;
-  var Keyboard = tsc.input.Keyboard;
 
   window.onload = function () {
     var canvas = document.getElementById("gameCanvas");
