@@ -52,12 +52,6 @@
       shipDelegate.setInput(key);
     });
 
-
-    input.registerEventHandler(function (key) {
-      shipDelegate.setInput(key);
-    });
-
-
 // Creat a Ship 
 // DEBUG
     drawer.addShip(ship);
