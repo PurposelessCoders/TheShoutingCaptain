@@ -23,5 +23,10 @@
    * @constant
    */
   physic.DECELERATION = .25;
-
+  
+  /**
+   * @constant
+   */
+  physic.WIND_MAX_POWER = 5;
+  
 }).call(this);
