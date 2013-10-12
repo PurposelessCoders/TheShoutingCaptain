@@ -11,6 +11,7 @@
     this.shipDelegate = null;
     this.drawer = null;
     this.objs = [];
+    this.init();
   };
 
   var _main = Main.prototype;
@@ -24,7 +25,7 @@
     var midX = canvas.width / 2;
     var midY = canvas.height / 2;
     this.ship = new Ship(midX, midY, 0);
-    drawer.addShip(this.ship);
+    this.drawer.addShip(this.ship);
 
     this.shipDelegate = new ShipDelegate(this.ship);
     var input = new Keyboard(document);
