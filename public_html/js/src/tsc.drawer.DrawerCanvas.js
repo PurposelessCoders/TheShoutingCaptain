@@ -50,18 +50,34 @@
     var pow = this.wind.getPower();
     var ang = this.wind.getAngle();
 
+    //display power and orientation of wind
+    this.ctx.save();
+    this.ctx.fillStyle = '#FF6600';
+    this.ctx.translate(50, 50);
+
+    this.ctx.rotate(ang * Math.PI / 180);
+    this.ctx.beginPath();
+    this.ctx.moveTo(0,-5);
+    this.ctx.lineTo(-2.5 * pow /1.5 ,5* pow);
+    this.ctx.lineTo(2.5*pow/1.5,5*pow);
+    this.ctx.fill();
+    
+    this.ctx.restore();
+
+    //display a reference of wind
     this.ctx.save();
     this.ctx.fillStyle = '#FF0000';
     this.ctx.translate(50, 50);
 
     this.ctx.rotate(ang * Math.PI / 180);
     this.ctx.beginPath();
-    this.ctx.moveTo(0,-10);
-    this.ctx.lineTo(-5,10);
-    this.ctx.lineTo(5,10);
+    this.ctx.moveTo(0,-5);
+    this.ctx.lineTo(-2.5,5);
+    this.ctx.lineTo(2.5,5);
     this.ctx.fill();
     
     this.ctx.restore();
+
   };
   
   _drawer.computeShipModuloPosition = function () {

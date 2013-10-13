@@ -31,7 +31,7 @@
   
   var Wind = function (angle, power) {
       if (angle === undefined || power === undefined)  {
-          this._power =  Math.floor(Math.random()*physic.WIND_MAX_POWER);
+          this._power =  Math.floor(Math.random()*physic.WIND_MAX_POWER) + 1;
           this._angle =  Math.floor(Math.random()*360);
       } else {
           this._power = power;
