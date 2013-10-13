@@ -30,6 +30,7 @@
     this.wind.defineNextChagement();
     
     this.drawer.addShip(this.ship);
+    this.drawer.addWind(this.wind);
 
     this.shipDelegate = new ShipDelegate(this.ship);
     var input = new Keyboard(document);
@@ -73,6 +74,7 @@
   _main.display = function () {
     this.drawer.clear();
     this.drawer.drawShip();
+    this.drawer.drawWind();
 
     for (var i = 0; i < this.objs.length; i++) {
       var obj = this.objs[i];

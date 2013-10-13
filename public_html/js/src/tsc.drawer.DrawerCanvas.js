@@ -18,6 +18,10 @@
     this.ship = ship;
   };
 
+  _drawer.addWind = function (wind) {
+    this.wind = wind;
+  };
+  
   _drawer.drawShip = function () {
     this.computeShipModuloPosition();
     var shipX = this.ship.posX;
@@ -38,6 +42,25 @@
     this.ctx.closePath();
     this.ctx.fill();
 
+    this.ctx.restore();
+  };
+  
+  _drawer.drawWind = function () {
+      
+    var pow = this.wind.getPower();
+    var ang = this.wind.getAngle();
+
+    this.ctx.save();
+    this.ctx.fillStyle = '#FF0000';
+    this.ctx.translate(50, 50);
+
+    this.ctx.rotate(ang * Math.PI / 180);
+    this.ctx.beginPath();
+    this.ctx.moveTo(0,-10);
+    this.ctx.lineTo(-5,10);
+    this.ctx.lineTo(5,10);
+    this.ctx.fill();
+    
     this.ctx.restore();
   };
   
