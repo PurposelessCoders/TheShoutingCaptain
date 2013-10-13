@@ -15,12 +15,12 @@
   /**
    * @constant
    */
-  var WIND_TIMER_MIN = 10;
+  var WIND_TIMER_MIN = 10000;
 
   /**
    * @constant
    */
-  var WIND_TIMER_MAX = 60;
+  var WIND_TIMER_MAX = 60000;
       
       
   /**
@@ -30,7 +30,7 @@
    */
   
   var Wind = function (angle, power) {
-      if (angle !== undefined || power !== undefined)  {
+      if (angle === undefined || power === undefined)  {
           this._power =  Math.floor(Math.random()*physic.WIND_MAX_POWER);
           this._angle =  Math.floor(Math.random()*360);
       } else {
