@@ -16,6 +16,7 @@
     this.angle = angle;
     this.linearSpeed = 0;
     this.angularSpeed = 0;
+    this.sail = 0;
   };
 
   tsc.Ship = Ship;
@@ -44,20 +45,23 @@
       diffAngle = Math.min(Math.abs(tsc.global.wind.getAngle() - myAngle),
                            Math.abs(360 - angleB + angleA));
 
-      return ((180 - diffAngle) / 180);
+      var ret = (180 - diffAngle) / 180;
+      if (ret < 0.3)
+          ret *= ret;
+      return (ret);
   };
   
   _ship.accelerate = function () {
       var coef = this.speedCoef();
 
       if (this.linearSpeed < physic.MAX_SPEED * coef) {
-          var clc = physic.ACCELERATION * coef * tsc.global.wind.getPower() * WIND_POWER_COEF;
+          var clc = physic.ACCELERATION * coef * tsc.global.wind.getPower() * WIND_POWER_COEF * this.sail;
           if (this.linearSpeed + clc >= physic.MAX_SPEED * coef)
               this.linearSpeed = physic.MAX_SPEED * coef;
           else
-              this.linearSpeed += physic.ACCELERATION * coef * tsc.global.wind.getPower() * WIND_POWER_COEF;
-      }  else if (this.linearSpeed > physic.MAX_SPEED * coef)
-            this.stopAccelerate();
+              this.linearSpeed += clc;
+      } 
+      this.stopAccelerate();
   };
 
   _ship.decelerate = function () {
@@ -77,6 +81,7 @@
   };
 
   _ship.move = function (time) {
+    this.accelerate();
     this.moveAngular(time);
     this.moveLinear(time);
   };
@@ -94,4 +99,13 @@
     this.posX += Math.cos(this.angle * Math.PI / 180) * this.linearSpeed;
   };
 
+  _ship.sailUp = function () {
+      if (this.sail < 1)
+          this.sail += 0.5;
+  };
+  
+  _ship.sailDown = function () {
+      if (this.sail > 0)
+          this.sail -= 0.5;
+  };
 }).call(this);
