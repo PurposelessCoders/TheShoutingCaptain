@@ -41,7 +41,8 @@
     this.ctx.lineTo(-4, 8);
     this.ctx.closePath();
     this.ctx.fill();
-
+    this.ctx.fillText("sail  coef: " + this.ship.sail, 10, 10);
+    this.ctx.fillText("speed coef: " + (Math.floor((this.ship.speedCoef() * 10)) / 10), 10, 20);
     this.ctx.restore();
   };
   
