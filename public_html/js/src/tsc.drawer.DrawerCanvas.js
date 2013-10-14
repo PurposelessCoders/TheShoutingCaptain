@@ -30,7 +30,7 @@
 
     this.ctx.save();
     this.ctx.translate(shipX, shipY);
-    this.ctx.rotate(shipAngle + Math.PI / 2);
+    this.ctx.rotate((shipAngle + 90) * Math.PI / 180);
 
     this.ctx.beginPath();
     this.ctx.moveTo(-4, 8);

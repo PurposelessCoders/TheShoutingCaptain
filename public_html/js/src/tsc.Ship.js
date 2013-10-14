@@ -2,6 +2,8 @@
 
   var physic = tsc.values.physic;
 
+  var ANGULAR_SPEED = 5;
+
   /**
    * @constructor
    * @param {type} posX
@@ -21,11 +23,11 @@
   var _ship = Ship.prototype;
 
   _ship.turnRight = function () {
-    this.angularSpeed = Math.PI / 16;
+    this.angularSpeed = ANGULAR_SPEED;
   };
 
   _ship.turnLeft = function () {
-    this.angularSpeed = -Math.PI / 16;
+    this.angularSpeed = -ANGULAR_SPEED;
   };
 
   _ship.stopTurning = function () {
@@ -66,8 +68,8 @@
   };
 
   _ship.moveLinear = function () {
-    this.posY += Math.sin(this.angle) * this.linearSpeed;
-    this.posX += Math.cos(this.angle) * this.linearSpeed;
+    this.posY += Math.sin(this.angle * Math.PI / 180) * this.linearSpeed;
+    this.posX += Math.cos(this.angle * Math.PI / 180) * this.linearSpeed;
   };
 
 }).call(this);
