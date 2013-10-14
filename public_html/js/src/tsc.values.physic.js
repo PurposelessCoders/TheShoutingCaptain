@@ -7,12 +7,12 @@
   /**
    * @constant
    */
-  physic.WATER_FRICTION = .05;
+  physic.WATER_FRICTION = .1;
   
   /**
    * @constant
    */
-  physic.MAX_SPEED = 4;
+  physic.MAX_SPEED = 8;
   
   /**
    * @constant
