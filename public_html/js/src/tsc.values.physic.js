@@ -7,7 +7,7 @@
   /**
    * @constant
    */
-  physic.WATER_FRICTION = .1;
+  physic.WATER_FRICTION = .05;
   
   /**
    * @constant

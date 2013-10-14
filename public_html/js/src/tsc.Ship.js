@@ -2,7 +2,7 @@
 
   var physic = tsc.values.physic;
 
-  var ANGULAR_SPEED = 5;
+  var ANGULAR_SPEED = 10;
   var WIND_POWER_COEF = 0.5;
   /**
    * @constructor
@@ -23,11 +23,13 @@
   var _ship = Ship.prototype;
 
   _ship.turnRight = function () {
-    this.angularSpeed = ANGULAR_SPEED;
+    this.angularSpeed = ANGULAR_SPEED * Math.max(0.3, 
+                                         Math.min(1, this.linearSpeed / physic.MAX_SPEED * this.speedCoef()));
   };
 
   _ship.turnLeft = function () {
-    this.angularSpeed = -ANGULAR_SPEED;
+    this.angularSpeed = -ANGULAR_SPEED * Math.max(0.3, 
+                                         Math.min(1, this.linearSpeed / physic.MAX_SPEED * this.speedCoef()));
   };
 
   _ship.stopTurning = function () {
