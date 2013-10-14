@@ -30,9 +30,9 @@
 
   _delegate.actionLinear = function () {
     if (this.key.up && !this.key.down) {
-      this.ship.accelerate();
+      this.ship.sailUp();
     } else if (!this.key.up && this.key.down) {
-      this.ship.decelerate();
+      this.ship.sailDown();
     } else {
       this.ship.stopAccelerate();
     }
