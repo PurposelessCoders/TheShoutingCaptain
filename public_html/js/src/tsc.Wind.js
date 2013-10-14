@@ -30,6 +30,7 @@
    */
   
   var Wind = function (angle, power) {
+      tsc.global.wind = this;
       if (angle === undefined || power === undefined)  {
           this._power =  Math.floor(Math.random()*physic.WIND_MAX_POWER) + 1;
           this._angle =  Math.floor(Math.random()*360);
