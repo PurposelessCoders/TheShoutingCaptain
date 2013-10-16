@@ -5,6 +5,8 @@
   var ANGULAR_SPEED = 10;
   var WIND_POWER_COEF = 0.5;
   var DEFAULT_HP = 10;
+  var SAIL_MAX_HP = 10;
+  
   /**
    * @constructor
    * @param {type} posX
@@ -19,6 +21,8 @@
     this.linearSpeed = 0;
     this.angularSpeed = 0;
     this.sail = 0;
+    this.sailHp = SAIL_MAX_HP;
+    this.sailHpMax = this.sailHp;
   };
 
   tsc.Ship = Ship;
@@ -57,7 +61,7 @@
       var coef = this.speedCoef();
 
       if (this.linearSpeed < physic.MAX_SPEED * coef) {
-          var clc = physic.ACCELERATION * coef * tsc.global.wind.getPower() * WIND_POWER_COEF * this.sail;
+          var clc = physic.ACCELERATION * coef * tsc.global.wind.getPower() * WIND_POWER_COEF * this.sail * (this.sailHp / this.sailMax);
           if (this.linearSpeed + clc >= physic.MAX_SPEED * coef)
               this.linearSpeed = physic.MAX_SPEED * coef;
           else
@@ -109,5 +113,20 @@
   _ship.sailDown = function () {
       if (this.sail > 0)
           this.sail -= 0.5;
+  };
+  
+  _ship.hpSailDamages = function (damages) {
+      if (this.sailHp > 0)
+          this.sailHp = Math.max(0, this.sailHp - damages);
+  };
+  
+  _ship.hpDamages = function (damages) {
+    this.hp -= damages;
+    if (this.hp <= 0)
+        this.checkDeath();
+  };
+  
+  _ship.checkDeath = function () {
+    // LOOSER !  
   };
 }).call(this);
