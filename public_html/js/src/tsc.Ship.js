@@ -4,6 +4,7 @@
 
   var ANGULAR_SPEED = 10;
   var WIND_POWER_COEF = 0.5;
+  var DEFAULT_HP = 10;
   /**
    * @constructor
    * @param {type} posX
@@ -11,6 +12,7 @@
    * @param {type} angle
    */
   var Ship = function (posX, posY, angle) {
+    this.hp = DEFAULT_HP;
     this.posX = posX;
     this.posY = posY;
     this.angle = angle;
