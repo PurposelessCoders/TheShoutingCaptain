@@ -46,7 +46,7 @@
                            Math.abs(360 - angleB + angleA));
 
       var ret = (180 - diffAngle) / 180;
-      if (ret < 0.3)
+      if (ret < 0.1)
           ret *= ret;
       return (ret);
   };
