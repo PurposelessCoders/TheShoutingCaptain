@@ -61,7 +61,7 @@
       var coef = this.speedCoef();
 
       if (this.linearSpeed < physic.MAX_SPEED * coef) {
-          var clc = physic.ACCELERATION * coef * tsc.global.wind.getPower() * WIND_POWER_COEF * this.sail * (this.sailHp / this.sailMax);
+          var clc = physic.ACCELERATION * coef * tsc.global.wind.getPower() * WIND_POWER_COEF * this.sail * (this.sailHp / this.sailHpMax);
           if (this.linearSpeed + clc >= physic.MAX_SPEED * coef)
               this.linearSpeed = physic.MAX_SPEED * coef;
           else
