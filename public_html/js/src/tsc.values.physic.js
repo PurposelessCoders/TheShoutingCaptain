@@ -17,12 +17,12 @@
   /**
    * @constant
    */
-  physic.ACCELERATION = .5;
+  physic.ACCELERATION = .1;
   
   /**
    * @constant
    */
-  physic.DECELERATION = .25;
+  physic.DECELERATION = .15;
   
   /**
    * @constant
