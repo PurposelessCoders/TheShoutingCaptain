@@ -1,6 +1,7 @@
 (function () {
     
     var HP_BY_MEMBERS = 10;
+    var REALOAD_TIME = 5000; //5s
     
     var Crew = function (size) {
         this.size = size;
@@ -24,6 +25,13 @@
            
         if (this.hp <= 0)
             //LOSER
+    };
+
+    _crew.timeToRealoadCanon = function (nbCanon) {
+        var manByCanon = nbCanon / this.size;
+        var bonusMoral = 100 / (50 + this.bonus);
+    
+        return REALOAD_TIME / (manByCanon * bonusMoral);
     };
     
     _crew.moralBonus = function (bonus) {
