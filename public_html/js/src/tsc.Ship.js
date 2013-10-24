@@ -23,6 +23,8 @@
     this.sail = 0;
     this.sailHp = SAIL_MAX_HP;
     this.sailHpMax = this.sailHp;
+    this.crew = null;
+    this.cannon = null;
   };
 
   tsc.Ship = Ship;
@@ -61,7 +63,7 @@
       var coef = this.speedCoef();
 
       if (this.linearSpeed < physic.MAX_SPEED * coef) {
-          var clc = physic.ACCELERATION * coef * tsc.global.wind.getPower() * WIND_POWER_COEF * this.sail * (this.sailHp / this.sailHpMax);
+          var clc = physic.ACCELERATION * coef * tsc.global.wind.getPower() * WIND_POWER_COEF * this.sail * Math.max(0.2, (this.sailHp / this.sailHpMax));
           if (this.linearSpeed + clc >= physic.MAX_SPEED * coef)
               this.linearSpeed = physic.MAX_SPEED * coef;
           else
